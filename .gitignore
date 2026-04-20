@@ -2,3 +2,4 @@
 .venv
 .env
 tz.md
+secret.py
