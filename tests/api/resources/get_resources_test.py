@@ -6,11 +6,14 @@ import model.resources.response.response as model
 @pytest.mark.usefixtures("delete_resource")
 @pytest.mark.resources
 def test_get_folder_ok():
-    client = cli.Client()
-    client.create_resource("/Music18")
 
-    response = client.get_resource("/Music18")
+    folderName = "Music18"
+
+    client = cli.Client()
+    client.create_resource(f"/{folderName}")
+
+    response = client.get_resource(f"/{folderName}")
     assert response.status_code == 200
 
     data = model.Item.model_validate(response.json())
-    assert data.name == "Music18", "Имя созданной папки некорректно"
+    assert data.name == folderName, "Имя созданной папки некорректно"
